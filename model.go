@@ -73,5 +73,8 @@ func (p *product) updateProduct(db *sql.DB) error {
 func (p *product) deleteProduct(db *sql.DB) error {
 	query := fmt.Sprintf("delete from products where id=%v", p.ID)
 	_, err := db.Exec(query)
+	if err != nil {
+		return nil
+	}
 	return err
 }
