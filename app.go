@@ -4,11 +4,12 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"strconv"
+
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 )
 
 type App struct {
@@ -17,7 +18,7 @@ type App struct {
 }
 
 func (app *App) Initialise(DbUser string, DbPassword string, DbName string) error {
-	connectionString := fmt.Sprintf("%v:%v@tcp(127.0.0.1:3306)/%v", DbUser, DbPassword, DbName)
+	connectionString := fmt.Sprintf("%v:%v@tcp(localhost:3306)/%v", DbUser, DbPassword, DbName)
 	var err error
 	app.DB, err = sql.Open("mysql", connectionString)
 	if err != nil {
